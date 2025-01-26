@@ -1,0 +1,16 @@
+{
+  "cmake.debugConfig": {
+    "console": "integratedTerminal",
+  },
+
+  //"C_Cpp.default.forcedInclude": [ "${workspaceFolder}/src/config.hpp" ],
+  //"C_Cpp.errorSquiggles": "disabled",
+
+  "files.associations": {
+    "**/Microsoft Visual Studio/**/MSVC/**/include/**": "cpp",
+    "**/msys64/**/include/**"                         : "cpp",
+    "*.h++"                                           : "cpp",
+    "*.mpp"                                           : "cpp",
+    "*.cppm"                                          : "cpp",
+  },
+}

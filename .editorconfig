@@ -1,0 +1,52 @@
+root = true # topmost https://EditorConfig.org file
+
+[*]
+charset     = utf-8
+end_of_line = lf
+#indent_style = tab
+#indent_size  = 4
+insert_final_newline     = true
+trim_trailing_whitespace = true
+
+[*.{c,h,cc,hh,cpp,hpp,cxx,hxx,c++,h++,inc,inl}]
+indent_style = tab
+indent_size  = 4
+
+[{*.go,go.mod,go.sum}]
+indent_style = tab
+indent_size  = 4
+
+[{CMakeLists.txt,*.cmake}]
+indent_style = space
+indent_size = 2
+
+#[{makefile,Makefile,*.mk}] # Not in use
+#indent_style = tab #required
+#indent_size = 2
+
+[{.gitconfig,.gitignore,.gitmodules}]
+indent_style = tab
+indent_size  = 4
+
+[*.md] # rule: MD009: 2+ spaces (or `\`) as for `<br/>`
+indent_style = tab
+indent_size  = 2
+#trim_trailing_whitespace = false # scrap this nonesence, better to use `\`
+
+[*.{xml,y{a,}ml,json,code-workspace}]
+indent_style = space #required
+indent_size = 2
+
+[*.{py,js,jsx,vue,ts,tsx,css,sass,scss,less}]
+indent_style = space
+indent_size = 4
+
+# save formatting
+[*.patch]
+trim_trailing_whitespace = false
+indent_style = unset
+
+### "experimental `.gitmodules` 5-space identation" to
+#[.gitmodules] # align L1:`submodule "<name>"` with L2:`path = <name>`, like:
+#indent_style = space #L1:[submodule "deps/imgui/imgui"]
+#indent_size  = 5     #L2:     path = deps/imgui/imgui <-- 5-space tab

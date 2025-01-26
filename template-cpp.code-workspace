@@ -1,0 +1,64 @@
+{
+  "folders": [
+    {
+      "path": ".",
+    }
+  ],
+
+  "settings": {
+    "accessibility.hideAccessibleView": true,
+    "window.zoomLevel": 0.25,
+    "cmake.parallelJobs": 4, // `0` - defaults to wrong `6` on 4-threaded CPU and slows configuration
+    "update.mode"                          : "none",
+    "update.enableWindowsBackgroundUpdates":  false,
+    "telemetry.telemetryLevel": "crash",
+    "workbench.enableExperiments"                   : false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "typescript.surveys.enabled"                : false,
+    "typescript.disableAutomaticTypeAcquisition":  true,
+
+    "files.readonlyInclude": { // prevent accidental editing
+      "**/MSVC/**/include/**": true,
+      "deps/**"              : true,
+      "dep/**"               : true,
+    },
+
+    "terminal.integrated.detectLocale"                         :          "on", // enables std::u8string valid output
+    "terminal.integrated.enablePersistentSessions"             :          true,
+    "terminal.integrated.persistentSessionReviveProcess"       :       "never",
+    "terminal.integrated.accessibleViewFocusOnCommandExecution":         false,
+    "terminal.integrated.tabs.focusMode"                       : "singleClick",
+    "terminal.integrated.env.windows": {
+      "AWS_REGION": "us-east-2",
+      "AWS_ID"    :     "my_id",
+    },
+
+    "editor.wordWrap"            :       "on",
+    "editor.formatOnPaste"       :      false,
+    "editor.renderWhitespace"    : "boundary",
+    "editor.accessibilitySupport":      "off",
+    //"editor.tabSize"             :          3,
+    //"editor.detectIndentation"   :      false,
+    "debug.openExplorerOnEnd"     :                 true,
+    "debug.focusEditorOnBreak"    :                false,
+    "debug.internalConsoleOptions": "openOnSessionStart",
+    "extensions.ignoreRecommendations": true,
+
+    "C_Cpp.inlayHints.autoDeclarationTypes.enabled"                   : false,
+    "C_Cpp.inlayHints.referenceOperator.enabled"                      : false,
+    "C_Cpp.inlayHints.parameterNames.enabled"                         : false,
+    "C_Cpp.inlayHints.parameterNames.suppressWhenArgumentContainsName":  true,
+
+    //"trailing-spaces.syntaxIgnore": ["diff"],
+
+    "files.trimTrailingWhitespace": false,
+    "files.associations": { // prevent constant growth from opening C++ extension-less STL files
+      "**/Microsoft Visual Studio/**/MSVC/**/include/**": "cpp", // c++ MSVC includes
+      "**/msys64/**/include/**"                         : "cpp", // c++ MSYS includes
+      "*.cppm"                                          : "cpp", // c++ module
+      "*.mpp"                                           : "cpp", // c++ module
+      "*.ipp"                                           : "cpp", // c++ header inline
+      "*.h++"                                           : "cpp", // c++ header
+    },
+  }
+}
