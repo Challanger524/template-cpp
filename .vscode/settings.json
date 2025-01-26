@@ -1,0 +1,7 @@
+{
+  "cmake.debugConfig": {
+    "console": "integratedTerminal",
+  },
+
+  //"C_Cpp.default.forcedInclude": [ "${workspaceFolder}/src/config.hpp" ],
+}

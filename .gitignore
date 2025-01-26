@@ -1,0 +1,79 @@
+# Project files and executables
+template
+
+# User files
+note.sh
+note.txt
+flow.sh
+flow.txt
+CMakeUserPresets.json
+
+# IDE files
+#*users*
+.idea/
+*.user
+*.swp
+*~
+
+## VS Code
+.vscode/
+*.code-workspace
+
+## Visual Studio
+.vs/
+#*.sln
+#*.vcxproj*
+x64/
+x86/
+Debug/
+Release/
+
+# Artifacts
+## Folders:
+mid/
+out/
+libs/
+links/
+build/
+cmake-win/
+cmake-nix/
+cmake-build-*/
+# ingore yet "untracked files" while traversing history
+res/
+dep/
+deps/
+
+## Files:
+*.[ao]
+*.so
+*.dylib
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.dmp
+*.log
+*.ini
+*.cfg
+*.cfg+
+
+## Windows/Linux/other file copys/duplicates and `_commented.file` files
+_*
+*.[1-9]
+*([1-9])*
+* copy*
+*— copy*
+*— копия*
+
+## OS Generated Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.Trash-*
+$RECYCLE.BIN/
+.TemporaryItems
+ehthumbs.db
+Thumbs.db

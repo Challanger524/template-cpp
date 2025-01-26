@@ -1,0 +1,24 @@
+{
+  "recommendations": [
+    // https://EditorConfig.org support for VS Code
+    "editorconfig.editorconfig",
+
+    // Highlight trailing spaces
+    "shardulm94.trailing-spaces",
+
+    // Show bracket header on closing bracket
+    "wraith13.bracket-lens",
+
+    // Colorize the indentation scopes in front of your text
+    //"oderwat.indent-rainbow",
+
+    // Fancy lightweight hex-editor
+    //"ms-vscode.hexeditor",
+
+    // Open a file under the current cursor position (relative also works)
+    // Since relative filepaths broken on Windows and pull request with fix is stuck:
+    // https://github.com/microsoft/vscode/issues/181435#issuecomment-1934139913
+    // UPD: finally fixed in vanilla VS Code
+    //"fr43nk.seito-openfile",
+  ]
+}
