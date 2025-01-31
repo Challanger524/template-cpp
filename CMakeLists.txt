@@ -27,6 +27,17 @@ file(GLOB_RECURSE SOURCE_FILES_ CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.c
 list(FILTER SOURCE_FILES_ EXCLUDE REGEX ".*\\/_.*\\..*") # exclude files starting with uncderscore `_<file>`: https://regex101.com/r/DT6qGi/1
 target_sources        (${PROJECT_NAME} PRIVATE ${SOURCE_FILES_})
 
+# # Enable: ISO C++ or GNU dialect # #
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  get_target_property(s_ ${PROJECT_NAME} CXX_STANDARD) # s_ - standard (version of C++)
+    if    (${_CXX_STD_ISO_})
+      target_compile_options(${PROJECT_NAME} PRIVATE "-std=c++${s_}")   # ISO C++ standard
+    elseif(${_CXX_STD_GNU_})
+      target_compile_options(${PROJECT_NAME} PRIVATE "-std=gnu++${s_}") # GNU C++ dialect
+    endif()
+  unset(s_)
+endif()
+
 # # Apply: compiler and linker flags (from: file:///./CMakePresets.json) # #
 target_link_options   (${PROJECT_NAME} PRIVATE "${_FLAGS_LINKER_}")    # flags: linker
 target_link_options   (${PROJECT_NAME} PRIVATE "${_FLAGS_COMP_LINK_}") # flags: linker & compiler (mutual)
