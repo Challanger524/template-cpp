@@ -44,17 +44,7 @@
     "C_Cpp.inlayHints.parameterNames.enabled"                         :  true,
     "C_Cpp.inlayHints.parameterNames.suppressWhenArgumentContainsName":  true,
 
-    "files.trimTrailingWhitespace": false, // `editorconfig` vscode extension must be installed
-    "files.readonlyInclude": { // prevent accidental editing
-      "**/MSVC/**/include/**"  : true, // MS Windows
-      "**/msys64/**/include/**": true, // MSYS2
-      "**/mingw/**/include/**" : true, // MinGW
-      "/usr/lib/**/include/**" : true, // Debian (ubuntu)
-      "/usr/include/**"        : true, // Debian (ubuntu)
-      "deps/**"                : true, // project
-      "dep/**"                 : true, // project
-    },
-    // prevent constant growth from opening C++ extension-less STL header files (might be notbe a coomplete list)
+    // Prevent constant growth from opening C++ extension-less STL header files (might not be a coomplete list)
     // https://github.com/microsoft/vscode-cpptools/issues/4077#issuecomment-2043151048
     "files.associations": {
       "**/Microsoft Visual Studio/**/MSVC/**/include/**": "cpp", // c++ MSVC   includes
@@ -67,5 +57,15 @@
       "*.ipp"                                           : "cpp", // c++ header inline
       "*.h++"                                           : "cpp", // c++ header
     },
+    "files.readonlyInclude": { // prevent accidental editing
+      "**/MSVC/**/include/**"  : true, // MS Windows
+      "**/msys64/**/include/**": true, // MSYS2
+      "**/mingw/**/include/**" : true, // MinGW
+      "/usr/lib/**/include/**" : true, // Debian (ubuntu)
+      "/usr/include/**"        : true, // Debian (ubuntu)
+      "deps/**"                : true, // project
+      "dep/**"                 : true, // project
+    },
+    "files.trimTrailingWhitespace": false, // `editorconfig` vscode extension must be installed to handle this
   }
 }

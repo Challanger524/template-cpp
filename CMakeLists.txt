@@ -15,7 +15,7 @@ target_precompile_headers (${PROJECT_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/src/co
 set_target_properties     (${PROJECT_NAME} PROPERTIES
   CXX_STANDARD          23
   CXX_STANDARD_REQUIRED ON
-  RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}$<0:>" # put executable near the `res/` resource folder
+  RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}$<0:>" # put executable near the `./res` resource folder
   EXPORT_COMPILE_COMMANDS   ON                          # generate `out/build/${presetName}/compile_commands.json`
 )
 

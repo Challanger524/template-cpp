@@ -52,7 +52,7 @@
       "cacheVariables": {
         "CMAKE_C_COMPILER":   "gcc",
         "CMAKE_CXX_COMPILER": "g++",
-        "_FLAGS_COMPILE_1_": "-fmax-errors=1;-Weffc++"
+        "_FLAGS_COMPILE_1_": "-fmax-errors=1;-Weffc++;-fpermissive"
       }
     },
     {
