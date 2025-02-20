@@ -37,10 +37,21 @@ target_compile_options(${PROJECT_NAME} PRIVATE "${_FLAGS_COMPILE_0_}"  # flags: 
 
 # # Setup: libraries # #
 
+#find_package(OpenGL REQUIRED)
+
+#add_subdirectory("${CMAKE_SOURCE_DIR}/dep/<lib>") # add git submodule lib
+
+# ImGui - https://github.com/Challanger524/ChernoOpenGL-CMake/blob/main/CMakeLists.txt (example)
+
+# Boost - https://github.com/boostorg/cmake?tab=readme-ov-file#using-boost-with-add_subdirectory
+# git clone --depth 1 --recurse --shallow-submodules --jobs=4 "https://github.com/boostorg/boost" #   clone in parent folder, or
+# git submodule add --depth 1 --name boost  -- "https://github.com/boostorg/boost" "dep/boost"    # ..add as git submodule to the project, +
+# git submodule update --init --recursive --depth 1 --jobs=4           --          "dep/boost"    # ..init boost with all its submodules
+
 # # Apply: project dependencies # #
 
-target_link_libraries     (${PROJECT_NAME} )
-target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE
+#target_link_libraries     (${PROJECT_NAME}        PRIVATE OpenGL::GL <lib_target>)
+target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE #
   "${CMAKE_SOURCE_DIR}/dep"                               # silence dependencies
 ) # child dirs will be treated as SYSTEM, even if opposite stated explicitly (with: -I)
 

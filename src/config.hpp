@@ -1,5 +1,3 @@
-#pragma once
-
 /** Project's main configuration (precompiled) header - force included into all source files
  *  Should be included via file:///./../CMakeLists.txt: `target_precompile_headers()`
  *  Intellisense hint option should be present:
@@ -12,20 +10,21 @@
  *    - file:///./../CMakeLists.txt : `target_precompile_headers(...)`         line
  *    - file:///./main.cpp          : `#error "config.hpp" not force included` line
  */
+#pragma once
 
 #ifndef PROJECT_CONFIG_PCH
-#define PROJECT_CONFIG_PCH // `config.hpp` presence definition mark
+#define PROJECT_CONFIG_PCH // `config.hpp` PCH presence mark
 #endif
 
 
 //------------------------ Includes -------------------------------------------
 
 
-// #include <conf/imconfig.h> // project config for Dear ImGui
+//#include <conf/imconfig.h> // project config for Dear ImGui, path: `src/conf/imconfig.h`
 
-#ifdef _WIN32
-#include <SDKDDKVer.h>      // for assembling (boost::context,..)
-#endif
+//#ifdef _WIN32
+//#  include <SDKDDKVer.h> // for assembling boost::context
+//#endif
 
 
 //------------------------ Defines --------------------------------------------
@@ -33,7 +32,7 @@
 
 #if (!defined(NDEBUG) || defined(TESTS_IN_APP)) && !defined(NO_TESTS_IN_APP)
 #  ifndef TESTING
-#    define TESTING
+#  define TESTING
 #  endif
 #endif
 
@@ -41,33 +40,35 @@
 //------------------------ Macro functions ------------------------------------
 
 
-#define  STR(X) #X     // stringizie the `X` (macro) _identifier_
-#define MSTR(E) STR(E) // stringizie the `E`  macro  _expression_
+#define  STR(X) #X     // stringizie the `X` (macro) _identifier_ (content of "#X")
+#define MSTR(E) STR(E) // stringizie the `E`  macro  _expression_ (identifier "E" itself)
 
 // https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros
 #ifndef  NDEBUG
-#define ONDEBUG(E) do { E; } while(0) // `E` exression on debug -  enabled
+#  define ONDEBUG(E) do { E; } while(0) // `E` exression on debug -  enabled
 #else
-#define ONDEBUG(E)                    // `E` exression on debug - disabled
+#  define ONDEBUG(E)                    // `E` exression on debug - disabled
 #endif
 
-// Compiler-friendly debug breakpoints (in source code)
+// Compiler- and platform-friendly debug breakpoints (placed in source code)
 // https://stackoverflow.com/questions/173618/is-there-a-portable-equivalent-to-debugbreak-debugbreak/49079078#49079078
 // https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p2514r0.html#_implementation_experience
 #ifdef NDEBUG
-#  define BREAKPOINT()
+#  define BREAKPOINT() // breakpoint disabled (empty)
 #endif
 
-#if !defined(BREAKPOINT) && __has_include(<intrin.h>) && (defined(_MSC_VER) || defined (__MINGW32__))
-#  include <intrin.h>
-#  define BREAKPOINT() __debugbreak()
-#elif defined(__has_builtin) && !defined(__ibmxl__) // clang/gcc
-#  if __has_builtin(__builtin_debugtrap) // clang
+#if  !defined(BREAKPOINT) && __has_include(<intrin.h>) && (defined(_MSC_VER) || defined (__MINGW32__)) // ms windows
+#  include <intrin.h> // other platforms might have it too, but only as an extension after `#include_next <intrin.h>`
+#  define BREAKPOINT() __debugbreak() // the best incode implementation of debug breakpoint belongs to microsoft
+#elif defined(__has_builtin) && !defined(__ibmxl__) // clang/gcc (and not IBM XL)
+#  if   __has_builtin(__builtin_debugtrap) // clang
 #    define BREAKPOINT() __builtin_debugtrap()
-//#  elif __has_builtin(__builtin_trap) // gcc
-//#    define BREAKPOINT() __builtin_trap() // not much useful
-#  endif
-#endif
+/*
+#  elif __has_builtin(__builtin_trap) // gcc
+#    define BREAKPOINT() __builtin_trap() // not much useful */
+#  endif // __has_builtin
+#endif // __debugbreak || __builtin_debugtrap //|| __builtin_trap
+
 #if !defined(BREAKPOINT) && __has_include(<signal.h>)
 #  include <signal.h>
 #  if defined(SIGTRAP)
@@ -78,9 +79,9 @@
 #endif
 
 #ifndef  NDEBUG
-#define ASSERT(E) if (!(E)) BREAKPOINT() // debug breakpoint on `expression` fail -  enabled
+#  define ASSERT(E) if (!(E)) BREAKPOINT() // debug breakpoint on `E` expression fail -  enabled
 #else
-#define ASSERT(E)                        // debug breakpoint on `expression` fail - disabled
+#  define ASSERT(E)                        // debug breakpoint on `E` expression fail - disabled
 #endif
 
 //------------------------ Namespaces and typedefs ----------------------------
@@ -108,6 +109,7 @@ using schar   =   signed char       ;
 //------------------------ Re-#defines ----------------------------------------
 
 
+//#define when      if
 //#define elif else if
 
 //#define ccast       const_cast
@@ -127,7 +129,7 @@ using schar   =   signed char       ;
 constexpr size_t operator ""uz(unsigned long long n) { return n; } // MSVC C++23 (might) still has no size_t literal (since C++23)
 #endif
 
-#if defined(MOD_OSTREAM_CHAR8T) && !defined(NO_MOD_OSTREAM_CHAR8T) // char8_t (since C++20)
+#if defined(MOD_OSTREAM_CHAR8T) && !defined(NO_MOD_OSTREAM_CHAR8T) // `char8_t` type (since C++20)
 #include <iostream>
 #include <string>
 inline std::ostream &operator<<(std::ostream &os,            char8_t   v) { return os <<      static_cast<      char  >(v        ); }
