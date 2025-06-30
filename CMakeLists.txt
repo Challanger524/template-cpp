@@ -56,6 +56,14 @@ target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE #
 ) # child dirs will be treated as SYSTEM, even if opposite stated explicitly (with: -I)
 
 
+# # Add: custom build targets # #
+
+add_custom_target( ${PROJECT_NAME}-clean
+  COMMENT "Target `${PROJECT_NAME}` - clean"
+  COMMAND ${CMAKE_COMMAND} -E rm -rf -- "${PROJECT_BINARY_DIR}/CMakeFiles/${PROJECT_NAME}.dir/src/"
+)
+
+
 ###Stash###
 
 #set(CMAKE_VERBOSE_MAKEFILE ON CACHE BOOL "" FORCE) # debug compiling
