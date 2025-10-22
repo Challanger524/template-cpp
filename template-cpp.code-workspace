@@ -58,13 +58,14 @@
       "*.h++"                                           : "cpp", // c++ header
     },
     "files.readonlyInclude": { // prevent accidental editing
-      "**/MSVC/**/include/**"  : true, // MS Windows
-      "**/msys64/**/include/**": true, // MSYS2
-      "**/mingw/**/include/**" : true, // MinGW
-      "/usr/lib/**/include/**" : true, // Debian (ubuntu)
-      "/usr/include/**"        : true, // Debian (ubuntu)
-      "deps/**"                : true, // project
-      "dep/**"                 : true, // project
+      "**/Windows Kits/**/Include/**": true, // MS Windows Kits
+      "**/MSVC/**/include/**"        : true, // MS Windows
+      "**/msys64/**/include/**"      : true, // MSYS2
+      "**/mingw/**/include/**"       : true, // MinGW
+      "/usr/lib/**/include/**"       : true, // Debian (ubuntu)
+      "/usr/include/**"              : true, // Debian (ubuntu)
+      "deps/**"                      : true, // project
+      "dep/**"                       : true, // project
     },
     "files.trimTrailingWhitespace": false, // `editorconfig` vscode extension must be installed to handle this
   }
