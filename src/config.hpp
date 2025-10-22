@@ -10,6 +10,7 @@
  *    - file:///./../CMakeLists.txt : `target_precompile_headers(...)`         line
  *    - file:///./main.cpp          : `#error "config.hpp" not force included` line
  */
+
 #pragma once
 
 #ifndef PROJECT_CONFIG_PCH
@@ -36,6 +37,12 @@
 #  endif
 #endif
 
+#ifndef NDEBUG
+#define ONDEBUG(src_code) { src_code; }
+#else
+#define ONDEBUG(src_code)
+#endif
+
 
 //------------------------ Macro functions ------------------------------------
 
@@ -44,7 +51,7 @@
 #define MSTR(E) STR(E) // stringizie the `E`  macro  _expression_ (identifier "E" itself)
 
 // https://stackoverflow.com/questions/154136/why-use-apparently-meaningless-do-while-and-if-else-statements-in-macros
-#ifndef  NDEBUG
+#ifndef NDEBUG
 #  define ONDEBUG(E) do { E; } while(0) // `E` exression on debug -  enabled
 #else
 #  define ONDEBUG(E)                    // `E` exression on debug - disabled
@@ -84,11 +91,16 @@
 #  define ASSERT(E)                        // debug breakpoint on `E` expression fail - disabled
 #endif
 
-//------------------------ Namespaces and typedefs ----------------------------
+
+//------------------------ Namespaces -----------------------------------------
 
 
-//namespace      ImGui {} // Dear ImGui namespace pre-declaration (to alias it)
+//namespace      ImGui {} // `Dear ImGui` namespace pre-declaration (to alias it)
 //namespace im = ImGui;   // (global) namespace alias for `ImGui::`
+
+
+//------------------------ Typedefs -------------------------------------------
+
 
 /*                   // https://stackoverflow.com/a/13642921/11753532 // cstdint: std::<type>_t, thx but no.
 #include <cstdint>*/ // including `cstdint`   imports the symbol names in std    namespace and possibly in global namespace.
